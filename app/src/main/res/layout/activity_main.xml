@@ -7,124 +7,119 @@
     android:background="@color/colorPrimary"
     tools:context="com.jain.tavish.tictactoe.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_turn_teller"
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:background="@color/colorPrimary"
-        android:gravity="center"
-        android:padding="20dp"
-        android:textStyle="bold"
-        android:text="O's turn"
-        android:fontFamily="casual"
+        android:id="@+id/btn_new_game"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="30dp"
         android:textColor="@color/colorAccent"
-        android:textSize="40sp" />
+        android:text="New Game"/>
 
-    <View
-        android:layout_height="1dp"
-        android:layout_width="300dp"
-        android:background="@color/colorAccent"
-        android:id="@+id/line_hor_top"
-        android:layout_marginTop="320dp"
-        android:layout_centerHorizontal="true"/>
-
-    <View
-        android:layout_height="1dp"
-        android:layout_width="300dp"
-        android:id="@+id/line_hor_bottom"
-        android:background="@color/colorAccent"
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_marginTop="100dp"
-        android:layout_below="@id/line_hor_top"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/cardview"
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_height="300dp"
+        <TextView
+            android:id="@+id/tv_turn_teller"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:padding="20dp"
+            android:textStyle="bold"
+            android:text="O's turn"
+            android:fontFamily="casual"
+            android:textColor="@color/colorAccent"
+            android:textSize="40sp" />
+
+    </android.support.v7.widget.CardView>
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/cardview"
+        android:id="@+id/grid_layout"
         android:background="@color/colorAccent"
-        android:layout_width="1dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginTop="220dp"
-        android:id="@+id/line_ver_left"/>
+        android:rowCount="3"
+        android:columnCount="3">
 
-    <View
-        android:layout_height="300dp"
-        android:background="@color/colorAccent"
-        android:layout_toRightOf="@id/line_ver_left"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="220dp"
-        android:layout_width="1dp"
-        android:id="@+id/line_ver_right"/>
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/ic_red_back"
+            android:layout_height="100dp"
+            android:id="@+id/id_0_0" />
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/id_0_0"
-        android:padding="16dp"
-        android:layout_alignTop="@+id/line_ver_left"
-        android:layout_toStartOf="@+id/line_ver_right" />
+        <ImageView
+            android:id="@+id/id_0_1"
+            android:layout_width="100dp"
+            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="1dp"
+            android:background="@drawable/ic_red_back"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_0_1"
-        android:layout_width="100dp"
-        android:padding="16dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/line_hor_bottom"
-        android:layout_alignEnd="@+id/line_ver_right" />
+        <ImageView
+            android:id="@+id/id_0_2"
+            android:layout_marginBottom="1dp"
+            android:layout_width="100dp"
+            android:background="@drawable/ic_red_back"
+            android:layout_height="100dp"/>
 
-    <ImageView
-        android:id="@+id/id_0_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_above="@+id/id_1_1"
-        android:padding="16dp"
-        android:layout_alignStart="@+id/line_ver_right" />
+        <ImageView
+            android:id="@+id/id_1_0"
+            android:background="@drawable/ic_red_back"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="1dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_1_0"
-        android:layout_width="100dp"
-        android:padding="16dp"
-        android:layout_height="100dp"
-        android:layout_alignStart="@+id/id_0_0"
-        android:layout_below="@+id/id_0_0" />
+        <ImageView
+            android:id="@+id/id_1_1"
+            android:background="@drawable/ic_red_back"
+            android:layout_marginBottom="1dp"
+            android:layout_width="100dp"
+            android:layout_marginEnd="1dp"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_1_1"
-        android:layout_width="100dp"
-        android:padding="16dp"
-        android:layout_height="100dp"
-        android:layout_alignBottom="@+id/line_hor_bottom"
-        android:layout_alignEnd="@+id/line_ver_right" />
+        <ImageView
+            android:id="@+id/id_1_2"
+            android:layout_width="100dp"
+            android:layout_marginBottom="1dp"
+            android:background="@drawable/ic_red_back"
+            android:layout_height="100dp"/>
 
-    <ImageView
-        android:id="@+id/id_1_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="16dp"
-        android:layout_below="@+id/id_0_2"
-        android:layout_toEndOf="@+id/line_ver_right" />
+        <ImageView
+            android:id="@+id/id_2_0"
+            android:background="@drawable/ic_red_back"
+            android:layout_marginEnd="1dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_2_0"
-        android:layout_width="100dp"
-        android:padding="16dp"
-        android:layout_height="100dp"
-        android:layout_alignStart="@+id/id_1_0"
-        android:layout_below="@+id/id_1_0" />
+        <ImageView
+            android:id="@+id/id_2_1"
+            android:layout_width="100dp"
+            android:background="@drawable/ic_red_back"
+            android:layout_marginEnd="1dp"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_2_1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="16dp"
-        android:layout_alignBottom="@+id/line_ver_right"
-        android:layout_alignStart="@+id/id_1_1" />
+        <ImageView
+            android:id="@+id/id_2_2"
+            android:background="@drawable/ic_red_back"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 
-    <ImageView
-        android:id="@+id/id_2_2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:padding="16dp"
-        android:layout_alignStart="@+id/line_ver_right"
-        android:layout_alignTop="@+id/id_2_1" />
+    </GridLayout>
 
 </RelativeLayout>

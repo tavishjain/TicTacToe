@@ -4,16 +4,15 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     public ImageView imageView1 , imageView2 , imageView3 , imageView4 , imageView5 , imageView6 , imageView7 , imageView8 , imageView9;
+    public Button newGameButton;
     public boolean cross;
     public TextView turn_teller;
     public int[] cross_number , circle_number;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        newGameButton = findViewById(R.id.btn_new_game);
 
         turn_teller = findViewById(R.id.tv_turn_teller);
 
@@ -36,6 +36,13 @@ public class MainActivity extends AppCompatActivity {
         imageView7 = findViewById(R.id.id_2_0);
         imageView8 = findViewById(R.id.id_2_1);
         imageView9 = findViewById(R.id.id_2_2);
+
+        newGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new_game();
+            }
+        });
 
         new_game();
 
@@ -113,11 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public int pxToDp(int px) {
-        DisplayMetrics displayMetrics = getApplicationContext().getResources().getDisplayMetrics();
-        return Math.round(px / (displayMetrics.xdpi / DisplayMetrics.DENSITY_DEFAULT));
-    }
-
     public int getImageResourceForView(int iv_id){
         int id = R.drawable.ic_cross_yellow_red_back;
 
@@ -192,12 +194,6 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu , menu);
-        return true;
-    }
-
     public void new_game(){
 
         steps_count = 0 ;
@@ -224,13 +220,5 @@ public class MainActivity extends AppCompatActivity {
         imageView7.setImageResource(0);
         imageView8.setImageResource(0);
         imageView9.setImageResource(0);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.new_game){
-            new_game();
-        }
-        return true;
     }
 }
