@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF4D4C</color>
+    <color name="colorPrimaryDark">#FF4D4C</color>
+    <color name="colorAccent">#FFCA27</color>
+
+    <color name="sunset_orange">#FF4D4C</color>
+    <color name="turbo">#FFCA27</color>
+
+</resources>

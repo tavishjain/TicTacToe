@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.jain.tavish.tictactoe.MainActivity">
+
+    <TextView
+        android:id="@+id/tv_turn_teller"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textStyle="bold"
+        android:text="O's turn"
+        android:fontFamily="casual"
+        android:textColor="@color/colorAccent"
+        android:textSize="40sp" />
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="300dp"
+        android:background="@color/colorAccent"
+        android:id="@+id/line_hor_top"
+        android:layout_marginTop="320dp"
+        android:layout_centerHorizontal="true"/>
+
+    <View
+        android:layout_height="1dp"
+        android:layout_width="300dp"
+        android:id="@+id/line_hor_bottom"
+        android:background="@color/colorAccent"
+        android:layout_marginTop="100dp"
+        android:layout_below="@id/line_hor_top"
+        android:layout_centerHorizontal="true"/>
+
+    <View
+        android:layout_height="300dp"
+        android:background="@color/colorAccent"
+        android:layout_width="1dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="220dp"
+        android:id="@+id/line_ver_left"/>
+
+    <View
+        android:layout_height="300dp"
+        android:background="@color/colorAccent"
+        android:layout_toRightOf="@id/line_ver_left"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="220dp"
+        android:layout_width="1dp"
+        android:id="@+id/line_ver_right"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/id_0_0"
+        android:padding="16dp"
+        android:layout_alignTop="@+id/line_ver_left"
+        android:layout_toStartOf="@+id/line_ver_right" />
+
+    <ImageView
+        android:id="@+id/id_0_1"
+        android:layout_width="100dp"
+        android:padding="16dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/line_hor_bottom"
+        android:layout_alignEnd="@+id/line_ver_right" />
+
+    <ImageView
+        android:id="@+id/id_0_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_above="@+id/id_1_1"
+        android:padding="16dp"
+        android:layout_alignStart="@+id/line_ver_right" />
+
+    <ImageView
+        android:id="@+id/id_1_0"
+        android:layout_width="100dp"
+        android:padding="16dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/id_0_0"
+        android:layout_below="@+id/id_0_0" />
+
+    <ImageView
+        android:id="@+id/id_1_1"
+        android:layout_width="100dp"
+        android:padding="16dp"
+        android:layout_height="100dp"
+        android:layout_alignBottom="@+id/line_hor_bottom"
+        android:layout_alignEnd="@+id/line_ver_right" />
+
+    <ImageView
+        android:id="@+id/id_1_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="16dp"
+        android:layout_below="@+id/id_0_2"
+        android:layout_toEndOf="@+id/line_ver_right" />
+
+    <ImageView
+        android:id="@+id/id_2_0"
+        android:layout_width="100dp"
+        android:padding="16dp"
+        android:layout_height="100dp"
+        android:layout_alignStart="@+id/id_1_0"
+        android:layout_below="@+id/id_1_0" />
+
+    <ImageView
+        android:id="@+id/id_2_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="16dp"
+        android:layout_alignBottom="@+id/line_ver_right"
+        android:layout_alignStart="@+id/id_1_1" />
+
+    <ImageView
+        android:id="@+id/id_2_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:padding="16dp"
+        android:layout_alignStart="@+id/line_ver_right"
+        android:layout_alignTop="@+id/id_2_1" />
+
+</RelativeLayout>
