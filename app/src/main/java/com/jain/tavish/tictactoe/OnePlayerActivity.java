@@ -413,12 +413,10 @@ public class OnePlayerActivity extends AppCompatActivity {
         if(flipValue==0){
             if(flagEndGame==1){
                 flipValue=1;
-                //TODO
                 displayTurn = "X's turn";
                 playerTurn.setText(displayTurn);
             }
             else{
-                //TODO
                 displayTurn = "X's turn";
                 playerTurn.setText(displayTurn);
             }
@@ -428,12 +426,10 @@ public class OnePlayerActivity extends AppCompatActivity {
         else if(flipValue==1 ){
             if(flagEndGame==1){
                 flipValue=0;
-                //TODO
                 displayTurn = "X's turn";
                 playerTurn.setText(displayTurn);
             }
             else{
-                //TODO
                 displayTurn = "X's turn";
                 playerTurn.setText(displayTurn);
             }
