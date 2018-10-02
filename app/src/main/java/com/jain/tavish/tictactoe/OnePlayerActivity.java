@@ -4,8 +4,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +28,7 @@ public class OnePlayerActivity extends AppCompatActivity {
     int counter = 0;
     int player1Win = 0, player2Win = 0, draw = 0;
     int flipValue=0;
+    Button button;
     public int[] cross_number , circle_number;
     //  public ImageView imageView1 , imageView2 , imageView3 , imageView4 , imageView5 , imageView6 , imageView7 , imageView8 , imageView9;
     AlertDialog.Builder builder;
@@ -36,6 +37,14 @@ public class OnePlayerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_player);
+
+        button = findViewById(R.id.btn_new_game_comp);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                newGame(view);
+            }
+        });
 
         cross_number = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1};
         circle_number = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1};
@@ -75,59 +84,45 @@ public class OnePlayerActivity extends AppCompatActivity {
 
         view.setEnabled(false);
         flag = 0;
-        Log.e("tavish", "1");
         if (turn == 1 && gamov == 0 && cross_number[3*i+j] != 0 && circle_number[3*i+j] != 0) {
 
             if(flipValue==0){
-                Log.e("tavish", "1 1");
-                circle_number[3*i+j] = 0;
-                Log.e("tavish", "1 2");
+                cross_number[3*i+j] = 0;
                 displayTurn = "O's turn";
-                Log.e("tavish", "1 3");
                 playerTurn.setText(displayTurn);
-                Log.e("tavish", "1 4");
                 Glide.with(this)
                         .load(R.drawable.ic_cross)
                         .into(playBoard[i][j]);
-                Log.e("tavish", "1 5");
                 boardMatrix[i][j]=1;
-                Log.e("tavish", "1 6");
                 turn = 2;
-                Log.e("tavish", "1 7");
                 moveNumber++;
-                Log.e("tavish", "1 8");
                 computerPlay();
-                Log.e("tavish", "1 9");
                 turn = 1;
-                Log.e("tavish", "1 10");
-                cross_number[3*i+j] = 0;
-                Log.e("tavish", "1 11");
+              //  cross_number[3*i+j] = 0;
                 displayTurn="X's turn";
-                Log.e("tavish", "1 12");
                 moveNumber++;
-                Log.e("tavish", "1 13");
             }
 
         } else if (turn == 2 && gamov == 0 && cross_number[3*i+j] != 0 && circle_number[3*i+j] != 0) {
 
             if(flipValue==1){
-                cross_number[3*i+j] = 0;
+                circle_number[3*i+j] = 0;
                 displayTurn = "X's turn";
-                playerTurn.setText(displayTurn);Glide.with(this)
+                playerTurn.setText(displayTurn);
+                Glide.with(this)
                         .load(R.drawable.ic_circle)
                         .into(playBoard[i][j]);
                 boardMatrix[i][j]=1;
                 turn = 1;
                 moveNumber++;
                 computerPlay();
-                circle_number[3*i+j] = 0;
+              //  circle_number[3*i+j] = 0;
                 displayTurn = "O's turn";
                 turn = 2;
                 moveNumber++;
 
             }
         }
-        Log.e("tavish", "2");
 
         checkWin();
 
@@ -234,6 +229,7 @@ public class OnePlayerActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(R.drawable.ic_circle)
                             .into(playBoard[i][j]);
+
                 if (checkWinComp() == 2 && flipValue == 0) {
                     flag=1;
                     Glide.with(this).load(0).into(playBoard[i][j]);
@@ -253,7 +249,6 @@ public class OnePlayerActivity extends AppCompatActivity {
                     Glide.with(this).load(0).into(playBoard[i][j]);
                     boardMatrix[i][j] = 0;
                     continue;
-
                 } else {
                     level++;
                     probMatrix[i][j]=computerAnalyze();
@@ -297,7 +292,7 @@ public class OnePlayerActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(R.drawable.ic_circle)
                     .into(playBoard[xCoord][yCoord]);
-            cross_number[3*i+j] = 0;
+            circle_number[3*xCoord+yCoord] = 0;
             displayTurn = "X's turn";
             playerTurn.setText(displayTurn);
         }
@@ -305,7 +300,7 @@ public class OnePlayerActivity extends AppCompatActivity {
             Glide.with(this)
                     .load(R.drawable.ic_cross)
                     .into(playBoard[xCoord][yCoord]);
-            circle_number[3*i+j] = 0;
+            cross_number[3*xCoord+yCoord] = 0;
             displayTurn = "O's turn";
             playerTurn.setText(displayTurn);
         }
@@ -315,7 +310,11 @@ public class OnePlayerActivity extends AppCompatActivity {
         double sum=0;
         int counter=0;
         int flagCheckGameNotOver=0;
-        for(int c=0;c<9;c++){
+        int checkWinCompValue = checkWinComp();
+        int c=0;
+            //for(int c=0;c<9;c++){
+    /*    while (c>9){
+            Log.e("tavish", c + " 1");
             int i=c/3;
             int j=c%3;
 
@@ -331,35 +330,34 @@ public class OnePlayerActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(R.drawable.ic_circle)
                             .into(playBoard[i][j]);
-                if(checkWinComp()==2 && flipValue==0){
+                if(checkWinCompValue==2 && flipValue==0){
                     sum=1;
                     Glide.with(this).load(0).into(playBoard[i][j]);
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==2 && flipValue==1){
+                else if(checkWinCompValue==2 && flipValue==1){
                     sum=1;
                     Glide.with(this).load(0).into(playBoard[i][j]);
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==1 && flipValue==1){
+                else if(checkWinCompValue==1 && flipValue==1){
                     sum=0;
                     Glide.with(this).load(0).into(playBoard[i][j]);
                     boardMatrix[i][j]=0;
 
                     return sum;
                 }
-                else if(checkWinComp()==1 && flipValue==0){
+                else if(checkWinCompValue==1 && flipValue==0){
                     sum=0;
                     Glide.with(this).load(0).into(playBoard[i][j]);
                     boardMatrix[i][j]=0;
 
                     return sum;
-                }
-                else {
+                }else {
                     counter++;
                     if(turn==1){
                         turn=2;
@@ -381,14 +379,13 @@ public class OnePlayerActivity extends AppCompatActivity {
                     turn=1;
                 }
             }
-
+            c++;
         }
-
+*/
         if(flagCheckGameNotOver==0){
             return 0.5;
         }
-        double average = ((double) sum)/ ((double) counter);
-        return average;
+        return ((double) sum)/ ((double) counter);
     }
 
     public void newGame(View view) {
@@ -396,6 +393,9 @@ public class OnePlayerActivity extends AppCompatActivity {
         win = 0;
         gamov = 0;
         turn=1;
+
+        cross_number = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1};
+        circle_number = new int[]{-1, -1, -1, -1, -1, -1, -1, -1, -1};
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -443,6 +443,19 @@ public class OnePlayerActivity extends AppCompatActivity {
     }
 
     public void checkWin() {
+/*
+        Log.e("tavish", "cross");
+
+        for (int aCross_number : cross_number) {
+            Log.e("tavish", Integer.toString(aCross_number));
+        }
+
+        Log.e("tavish", "circle");
+
+        for (int aCross_number : circle_number) {
+            Log.e("tavish", Integer.toString(aCross_number));
+        }
+*/
         for (int i = 0; i < 3; i++) {
 
             if ((cross_number[3*i+0] == 0 && cross_number[3*i+1] == 0 && cross_number[3*i+2] == 0) || (circle_number[3*i+0] == 0 && circle_number[3*i+1] == 0 && circle_number[3*i+2] == 0)) {
