@@ -121,20 +121,20 @@ public class TwoPlayerActivity extends AppCompatActivity {
     }
 
     public int getImageResourceForView(int iv_id){
-        int id = R.drawable.ic_cross_yellow_red_back;
+        int id = R.drawable.ic_cross;
 
         steps_count++;
 
         if(cross == false){ //Code for O
             cross = true;
-            id = R.drawable.ic_cross_yellow_red_back;
+            id = R.drawable.ic_cross;
             circle_number[iv_id - 1] = 0;
             turn_teller.setText("O's turn");
             checkForWin(circle_number , 'X');
         }else if(cross == true){ //Code for X
             cross = false;
             cross_number[iv_id - 1] = 0;
-            id = R.drawable.ic_circle_yellow_red_back;
+            id = R.drawable.ic_circle;
             checkForWin(cross_number , 'O');
             turn_teller.setText("X's turn");
         }
@@ -190,8 +190,7 @@ public class TwoPlayerActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 new_game();
             }
-        })
-                .show();
+        }).show();
     }
 
     public void new_game(){

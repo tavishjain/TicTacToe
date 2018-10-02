@@ -57,6 +57,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_marginBottom="1dp"
+            android:padding="8dp"
             android:layout_marginEnd="1dp"
             android:background="@drawable/ic_red_back"
             android:layout_height="100dp"
@@ -66,6 +67,7 @@
             android:id="@+id/id_0_1"
             android:layout_width="100dp"
             android:layout_marginBottom="1dp"
+            android:padding="8dp"
             android:layout_marginEnd="1dp"
             android:background="@drawable/ic_red_back"
             android:layout_height="100dp" />
@@ -73,6 +75,7 @@
         <ImageView
             android:id="@+id/id_0_2"
             android:layout_marginBottom="1dp"
+            android:padding="8dp"
             android:layout_width="100dp"
             android:background="@drawable/ic_red_back"
             android:layout_height="100dp"/>
@@ -82,12 +85,14 @@
             android:background="@drawable/ic_red_back"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
+            android:padding="8dp"
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
         <ImageView
             android:id="@+id/id_1_1"
             android:background="@drawable/ic_red_back"
+            android:padding="8dp"
             android:layout_marginBottom="1dp"
             android:layout_width="100dp"
             android:layout_marginEnd="1dp"
@@ -97,6 +102,7 @@
             android:id="@+id/id_1_2"
             android:layout_width="100dp"
             android:layout_marginBottom="1dp"
+            android:padding="8dp"
             android:background="@drawable/ic_red_back"
             android:layout_height="100dp"/>
 
@@ -104,11 +110,13 @@
             android:id="@+id/id_2_0"
             android:background="@drawable/ic_red_back"
             android:layout_marginEnd="1dp"
+            android:padding="8dp"
             android:layout_width="100dp"
             android:layout_height="100dp" />
 
         <ImageView
             android:id="@+id/id_2_1"
+            android:padding="8dp"
             android:layout_width="100dp"
             android:background="@drawable/ic_red_back"
             android:layout_marginEnd="1dp"
@@ -116,6 +124,7 @@
 
         <ImageView
             android:id="@+id/id_2_2"
+            android:padding="8dp"
             android:background="@drawable/ic_red_back"
             android:layout_width="100dp"
             android:layout_height="100dp" />
