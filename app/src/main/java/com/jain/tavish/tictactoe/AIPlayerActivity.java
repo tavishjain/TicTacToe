@@ -350,10 +350,10 @@ public class AIPlayerActivity extends AppCompatActivity {
         }
     }
 
-    // This will return the best possible move for the player
+    // This will return the best possible move for the opponent
     int findBestMove(char board[][]){
 
-        int bestVal = -1000;
+        int bestVal = 1000;
         int row = -1;
         int col = -1;
 
@@ -364,15 +364,15 @@ public class AIPlayerActivity extends AppCompatActivity {
         {
             for (int j = 0; j<3; j++)
             {
-                // Check if celll is empty
+                // Check if cell is empty
                 if (board[i][j]=='_')
                 {
                     // Make the move
-                    board[i][j] = player;
+                    board[i][j] = opponent;
 
                     // compute evaluation function for this
                     // move.
-                    int moveVal = minimax(board, 0, false);
+                    int moveVal = minimax(board, 0, true);
 
                     // Undo the move
                     board[i][j] = '_';
@@ -380,7 +380,7 @@ public class AIPlayerActivity extends AppCompatActivity {
                     // If the value of the current move is
                     // more than the best value, then update
                     // best/
-                    if (moveVal > bestVal)
+                    if (moveVal < bestVal)
                     {
                         row = i;
                         col = j;
