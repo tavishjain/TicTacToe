@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 public class OnePlayerActivity extends AppCompatActivity {
     int turn = 1;
     int win = 0;
+    int counter_for_log_lines = 0;
     int gamov = 0;
     int flagEndGame=0;
     int flag;
@@ -98,7 +100,7 @@ public class OnePlayerActivity extends AppCompatActivity {
                 moveNumber++;
                 computerPlay();
                 turn = 1;
-              //  cross_number[3*i+j] = 0;
+                //  cross_number[3*i+j] = 0;
                 displayTurn="X's turn";
                 moveNumber++;
             }
@@ -116,7 +118,7 @@ public class OnePlayerActivity extends AppCompatActivity {
                 turn = 1;
                 moveNumber++;
                 computerPlay();
-              //  circle_number[3*i+j] = 0;
+                //  circle_number[3*i+j] = 0;
                 displayTurn = "O's turn";
                 turn = 2;
                 moveNumber++;
@@ -128,7 +130,7 @@ public class OnePlayerActivity extends AppCompatActivity {
 
         if (gamov == 1) {
             if (win == 1) {
-                builder.setMessage("X wins!").setTitle("Game over");
+                builder.setTitle("X wins !!");
                 if(flagEndGame==0){
                     player1Win++;
                     counter++;
@@ -136,7 +138,7 @@ public class OnePlayerActivity extends AppCompatActivity {
 
 
             } else if (win == 2) {
-                builder.setMessage("O wins!").setTitle("Game over");
+                builder.setTitle("O wins !!");
                 if(flagEndGame==0){
                     player2Win++;
                     counter++;
@@ -164,13 +166,13 @@ public class OnePlayerActivity extends AppCompatActivity {
                 }
             }
             if (flag == 0) {
-                builder.setMessage("It's a draw!").setTitle("Game over");
+                builder.setTitle("Match Drawn !!");
                 if(flagEndGame==0){
                     counter++;
                     draw++;
                 }
                 flagEndGame=1;
-                builder.setPositiveButton("OK",new DialogInterface.OnClickListener(){
+                builder.setPositiveButton("NEW GAME",new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id){
                         newGame(new View(getApplicationContext()));
                     }
@@ -250,9 +252,9 @@ public class OnePlayerActivity extends AppCompatActivity {
                     boardMatrix[i][j] = 0;
                     continue;
                 } else {
-                    level++;
+                    // level++;
                     probMatrix[i][j]=computerAnalyze();
-                    level--;
+                    // level--;
 
                 }
                 Glide.with(this).load(0).into(playBoard[i][j]);
@@ -312,13 +314,15 @@ public class OnePlayerActivity extends AppCompatActivity {
         int flagCheckGameNotOver=0;
         int checkWinCompValue = checkWinComp();
         int c=0;
-            //for(int c=0;c<9;c++){
-    /*    while (c>9){
-            Log.e("tavish", c + " 1");
+        //for(int c=0;c<9;c++){
+      /*  while (c<9){
+            Log.e("tavish", "c " + Integer.toString(c));
+            Log.e("tavish", counter_for_log_lines++ + "");
             int i=c/3;
             int j=c%3;
 
             if(boardMatrix[i][j]==0){
+                Log.e("tavish", "1 1");
                 flagCheckGameNotOver=1;
                 boardMatrix[i][j]=1;
 
@@ -330,6 +334,8 @@ public class OnePlayerActivity extends AppCompatActivity {
                     Glide.with(this)
                             .load(R.drawable.ic_circle)
                             .into(playBoard[i][j]);
+
+                Log.e("tavish", "1 2");
                 if(checkWinCompValue==2 && flipValue==0){
                     sum=1;
                     Glide.with(this).load(0).into(playBoard[i][j]);
@@ -365,11 +371,12 @@ public class OnePlayerActivity extends AppCompatActivity {
                     else{
                         turn=1;
                     }
-                    level++;
+                  //  level++;
                     double value=computerAnalyze();
-                    level--;
+                 //   level--;
                     sum+=value;
                 }
+                Log.e("tavish", "1 3");
                 Glide.with(this).load(0).into(playBoard[i][j]);
                 boardMatrix[i][j]=0;
                 if(turn==1){
@@ -380,8 +387,9 @@ public class OnePlayerActivity extends AppCompatActivity {
                 }
             }
             c++;
-        }
-*/
+        }*/
+        Log.e("tavish", "while finish");
+
         if(flagCheckGameNotOver==0){
             return 0.5;
         }
@@ -423,7 +431,7 @@ public class OnePlayerActivity extends AppCompatActivity {
 
 
         }
-        else if(flipValue==1 ){
+        else if(flipValue==1){
             if(flagEndGame==1){
                 flipValue=0;
                 displayTurn = "X's turn";

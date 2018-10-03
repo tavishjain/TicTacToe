@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="          With AI           "
+        android:text="          With Computer           "
         android:layout_centerHorizontal="true"
         android:textColor="@color/colorPrimary"
         android:id="@+id/btn_play_with_AI"
