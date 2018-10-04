@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -82,16 +83,19 @@ public class AIPlayerActivity extends AppCompatActivity {
 
 
                 stepsCount++;
-                int computerTurn = findBestMove(matrix);
-                int row = computerTurn/10;
-                int col = computerTurn%10;
-                turnTeller.setText("X's turn");
-                Glide.with(this)
-                        .load(R.drawable.ic_circle)
-                        .into(playBoard[row][col]);
-                stepsCount++;
-                matrix[row][col] = 'O';
-                turn = 1;
+                if(isMovesLeft(matrix)) {
+                    int computerTurn = findBestMove(matrix);
+                    // Dividing by matrix rows count to get the row
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
+                    turnTeller.setText("X's turn");
+                    Glide.with(this)
+                            .load(R.drawable.ic_circle)
+                            .into(playBoard[row][col]);
+                    stepsCount++;
+                    matrix[row][col] = 'O';
+                    turn = 1;
+                }
             }else if(turn == 2 && gameOver == 0 && matrix[i][j] == '_'){
                 matrix[i][j] = 'O';
                 stepsCount++;
@@ -100,17 +104,18 @@ public class AIPlayerActivity extends AppCompatActivity {
                         .load(R.drawable.ic_circle)
                         .into(playBoard[i][j]);
                 turn = 1;
-
-                int computerTurn = findBestMove(matrix);
-                int row = computerTurn/10;
-                int col = computerTurn%10;
-                stepsCount++;
-                turnTeller.setText("O's turn");
-                Glide.with(this)
-                        .load(R.drawable.ic_cross)
-                        .into(playBoard[row][col]);
-                matrix[row][col] = 'X';
-                turn = 2;
+                if(isMovesLeft(matrix)) {
+                    int computerTurn = findBestMove(matrix);
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
+                    stepsCount++;
+                    turnTeller.setText("O's turn");
+                    Glide.with(this)
+                            .load(R.drawable.ic_cross)
+                            .into(playBoard[row][col]);
+                    matrix[row][col] = 'X';
+                    turn = 2;
+                }
             }
 
         }
@@ -390,7 +395,8 @@ public class AIPlayerActivity extends AppCompatActivity {
             }
         }
 
-        return 10*row + col;
+
+        return 3*row + col;
 
     }
 
