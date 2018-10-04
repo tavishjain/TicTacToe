@@ -40,7 +40,7 @@ public class ModeSelectionActivity extends AppCompatActivity {
     }
 
     public void playAI(View view) {
-        Intent intent = new Intent(ModeSelectionActivity.this, AIPlayerActivity.class);
+        Intent intent = new Intent(ModeSelectionActivity.this, AILevelSelectionActivity.class);
         startActivity(intent);
     }
 

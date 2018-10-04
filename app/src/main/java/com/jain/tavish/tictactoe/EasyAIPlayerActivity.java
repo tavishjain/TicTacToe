@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -13,10 +12,9 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-public class OnePlayerActivity extends AppCompatActivity {
+public class EasyAIPlayerActivity extends AppCompatActivity {
     int turn = 1;
     int win = 0;
-    int counter_for_log_lines = 0;
     int gamov = 0;
     int flagEndGame=0;
     int flag;
@@ -32,7 +30,6 @@ public class OnePlayerActivity extends AppCompatActivity {
     int flipValue=0;
     Button button;
     public int[] cross_number , circle_number;
-    //  public ImageView imageView1 , imageView2 , imageView3 , imageView4 , imageView5 , imageView6 , imageView7 , imageView8 , imageView9;
     AlertDialog.Builder builder;
 
     @Override
@@ -184,8 +181,6 @@ public class OnePlayerActivity extends AppCompatActivity {
         }
     }
 
-    int level=0;
-
     public void randomPlay(){
         int random = (int)(Math.random()*9);
         int i=random/3;
@@ -203,8 +198,6 @@ public class OnePlayerActivity extends AppCompatActivity {
         int flag=0;
         int flagGameNotOver=0;
 
-        int counter=0;
-        double sum=0;
         if(turn==1){
             turn=2;
         }
@@ -252,9 +245,7 @@ public class OnePlayerActivity extends AppCompatActivity {
                     boardMatrix[i][j] = 0;
                     continue;
                 } else {
-                    // level++;
-                    probMatrix[i][j]=computerAnalyze();
-                    // level--;
+                    probMatrix[i][j]=0.5;
 
                 }
                 Glide.with(this).load(0).into(playBoard[i][j]);
@@ -306,94 +297,6 @@ public class OnePlayerActivity extends AppCompatActivity {
             displayTurn = "O's turn";
             playerTurn.setText(displayTurn);
         }
-    }
-
-    public double computerAnalyze() {
-        double sum=0;
-        int counter=0;
-        int flagCheckGameNotOver=0;
-        int checkWinCompValue = checkWinComp();
-        int c=0;
-        //for(int c=0;c<9;c++){
-      /*  while (c<9){
-            Log.e("tavish", "c " + Integer.toString(c));
-            Log.e("tavish", counter_for_log_lines++ + "");
-            int i=c/3;
-            int j=c%3;
-
-            if(boardMatrix[i][j]==0){
-                Log.e("tavish", "1 1");
-                flagCheckGameNotOver=1;
-                boardMatrix[i][j]=1;
-
-                if(turn==1)
-                    Glide.with(this)
-                            .load(R.drawable.ic_cross)
-                            .into(playBoard[i][j]);
-                else
-                    Glide.with(this)
-                            .load(R.drawable.ic_circle)
-                            .into(playBoard[i][j]);
-
-                Log.e("tavish", "1 2");
-                if(checkWinCompValue==2 && flipValue==0){
-                    sum=1;
-                    Glide.with(this).load(0).into(playBoard[i][j]);
-                    boardMatrix[i][j]=0;
-
-                    return sum;
-                }
-                else if(checkWinCompValue==2 && flipValue==1){
-                    sum=1;
-                    Glide.with(this).load(0).into(playBoard[i][j]);
-                    boardMatrix[i][j]=0;
-
-                    return sum;
-                }
-                else if(checkWinCompValue==1 && flipValue==1){
-                    sum=0;
-                    Glide.with(this).load(0).into(playBoard[i][j]);
-                    boardMatrix[i][j]=0;
-
-                    return sum;
-                }
-                else if(checkWinCompValue==1 && flipValue==0){
-                    sum=0;
-                    Glide.with(this).load(0).into(playBoard[i][j]);
-                    boardMatrix[i][j]=0;
-
-                    return sum;
-                }else {
-                    counter++;
-                    if(turn==1){
-                        turn=2;
-                    }
-                    else{
-                        turn=1;
-                    }
-                  //  level++;
-                    double value=computerAnalyze();
-                 //   level--;
-                    sum+=value;
-                }
-                Log.e("tavish", "1 3");
-                Glide.with(this).load(0).into(playBoard[i][j]);
-                boardMatrix[i][j]=0;
-                if(turn==1){
-                    turn=2;
-                }
-                else{
-                    turn=1;
-                }
-            }
-            c++;
-        }*/
-        Log.e("tavish", "while finish");
-
-        if(flagCheckGameNotOver==0){
-            return 0.5;
-        }
-        return ((double) sum)/ ((double) counter);
     }
 
     public void newGame(View view) {
@@ -451,19 +354,7 @@ public class OnePlayerActivity extends AppCompatActivity {
     }
 
     public void checkWin() {
-/*
-        Log.e("tavish", "cross");
 
-        for (int aCross_number : cross_number) {
-            Log.e("tavish", Integer.toString(aCross_number));
-        }
-
-        Log.e("tavish", "circle");
-
-        for (int aCross_number : circle_number) {
-            Log.e("tavish", Integer.toString(aCross_number));
-        }
-*/
         for (int i = 0; i < 3; i++) {
 
             if ((cross_number[3*i+0] == 0 && cross_number[3*i+1] == 0 && cross_number[3*i+2] == 0) || (circle_number[3*i+0] == 0 && circle_number[3*i+1] == 0 && circle_number[3*i+2] == 0)) {

@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-public class AIPlayerActivity extends AppCompatActivity {
+public class HardAIPlayerActivity extends AppCompatActivity {
 
     GridLayout gridLayout;
     ImageView playBoard[][] = new ImageView[3][3];
