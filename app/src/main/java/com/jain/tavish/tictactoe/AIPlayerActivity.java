@@ -82,16 +82,19 @@ public class AIPlayerActivity extends AppCompatActivity {
 
 
                 stepsCount++;
-                int computerTurn = findBestMove(matrix);
-                int row = computerTurn/10;
-                int col = computerTurn%10;
-                turnTeller.setText("X's turn");
-                Glide.with(this)
-                        .load(R.drawable.ic_circle)
-                        .into(playBoard[row][col]);
-                stepsCount++;
-                matrix[row][col] = 'O';
-                turn = 1;
+                if(isMovesLeft(matrix)) {
+                    int computerTurn = findBestMove(matrix);
+                    // Dividing by matrix rows count to get the row
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
+                    turnTeller.setText("X's turn");
+                    Glide.with(this)
+                            .load(R.drawable.ic_circle)
+                            .into(playBoard[row][col]);
+                    stepsCount++;
+                    matrix[row][col] = 'O';
+                    turn = 1;
+                }
             }else if(turn == 2 && gameOver == 0 && matrix[i][j] == '_'){
                 matrix[i][j] = 'O';
                 stepsCount++;
@@ -100,17 +103,18 @@ public class AIPlayerActivity extends AppCompatActivity {
                         .load(R.drawable.ic_circle)
                         .into(playBoard[i][j]);
                 turn = 1;
-
-                int computerTurn = findBestMove(matrix);
-                int row = computerTurn/10;
-                int col = computerTurn%10;
-                stepsCount++;
-                turnTeller.setText("O's turn");
-                Glide.with(this)
-                        .load(R.drawable.ic_cross)
-                        .into(playBoard[row][col]);
-                matrix[row][col] = 'X';
-                turn = 2;
+                if(isMovesLeft(matrix)) {
+                    int computerTurn = findBestMove(matrix);
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
+                    stepsCount++;
+                    turnTeller.setText("O's turn");
+                    Glide.with(this)
+                            .load(R.drawable.ic_cross)
+                            .into(playBoard[row][col]);
+                    matrix[row][col] = 'X';
+                    turn = 2;
+                }
             }
 
         }
@@ -132,7 +136,10 @@ public class AIPlayerActivity extends AppCompatActivity {
             });
             AlertDialog dialog = builder.create();
             dialog.show();
-
+        }else if (gameOver == 0){
+            if(XwinOrNot == 0 && OwinOrNot == 0 && (stepsCount == 9 || stepsCount == 10)){
+                builder.setTitle("Match Drawn !!");
+            }
         }
 
     }
@@ -181,7 +188,7 @@ public class AIPlayerActivity extends AppCompatActivity {
         XwinOrNot = checkAllCases(array, 1);
         OwinOrNot = checkAllCases(array, 2);
 
-        if(XwinOrNot == 1 || OwinOrNot == 1){
+        if(XwinOrNot == 1 || OwinOrNot == 1 || stepsCount == 9){
             gameOver = 1;
         }
 
@@ -350,10 +357,10 @@ public class AIPlayerActivity extends AppCompatActivity {
         }
     }
 
-    // This will return the best possible move for the player
+    // This will return the best possible move for the opponent
     int findBestMove(char board[][]){
 
-        int bestVal = -1000;
+        int bestVal = 1000;
         int row = -1;
         int col = -1;
 
@@ -364,15 +371,15 @@ public class AIPlayerActivity extends AppCompatActivity {
         {
             for (int j = 0; j<3; j++)
             {
-                // Check if celll is empty
+                // Check if cell is empty
                 if (board[i][j]=='_')
                 {
                     // Make the move
-                    board[i][j] = player;
+                    board[i][j] = opponent;
 
                     // compute evaluation function for this
                     // move.
-                    int moveVal = minimax(board, 0, false);
+                    int moveVal = minimax(board, 0, true);
 
                     // Undo the move
                     board[i][j] = '_';
@@ -380,7 +387,7 @@ public class AIPlayerActivity extends AppCompatActivity {
                     // If the value of the current move is
                     // more than the best value, then update
                     // best/
-                    if (moveVal > bestVal)
+                    if (moveVal < bestVal)
                     {
                         row = i;
                         col = j;
@@ -390,7 +397,8 @@ public class AIPlayerActivity extends AppCompatActivity {
             }
         }
 
-        return 10*row + col;
+
+        return 3*row + col;
 
     }
 
