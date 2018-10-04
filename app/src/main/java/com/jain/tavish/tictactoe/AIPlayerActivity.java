@@ -86,8 +86,8 @@ public class AIPlayerActivity extends AppCompatActivity {
                 if(isMovesLeft(matrix)) {
                     int computerTurn = findBestMove(matrix);
                     // Dividing by matrix rows count to get the row
-                    int row = computerTurn / 9;
-                    int col = computerTurn % 9;
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
                     turnTeller.setText("X's turn");
                     Glide.with(this)
                             .load(R.drawable.ic_circle)
@@ -106,8 +106,8 @@ public class AIPlayerActivity extends AppCompatActivity {
                 turn = 1;
                 if(isMovesLeft(matrix)) {
                     int computerTurn = findBestMove(matrix);
-                    int row = computerTurn / 10;
-                    int col = computerTurn % 10;
+                    int row = computerTurn / 3;
+                    int col = computerTurn % 3;
                     stepsCount++;
                     turnTeller.setText("O's turn");
                     Glide.with(this)
@@ -396,7 +396,7 @@ public class AIPlayerActivity extends AppCompatActivity {
         }
 
 
-        return 9*row + col;
+        return 3*row + col;
 
     }
 
